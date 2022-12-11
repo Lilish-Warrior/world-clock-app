@@ -30,7 +30,7 @@ h2 {
   background-color: white;
 }
 
-.city-container {
+.city {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
