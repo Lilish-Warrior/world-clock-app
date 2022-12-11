@@ -1,16 +1,22 @@
 setInterval(function () {
-  let losAngelesElement = document.querySelector("#los-angeles");
-  let losAngelesDateElement = document.querySelector(".date");
-  let losAngelesTimeElement = document.querySelector(".time");
-  let losAngelesTime = moment().tz("America/Los_Angeles");
+  let currentCityTime = moment.tz.guess();
+  let currentCityTitleElement = document.querySelector(".city-title");
+  let currentCityDateElement = document.querySelector("#current-date");
+  let currentCityTimeElement = document.querySelector("#current-time");
 
-  losAngelesDateElement.innerHTML = losAngelesTime.format("MMMM Do YYYY");
-  losAngelesTimeElement.innerHTML = losAngelesTime.format(
-    "h:mm:ss [<small>] A [</small>]"
-  );
+  currentCityTitleElement.innerHTML = currentCityTime
+    .replace("_", " ")
+    .split("/")[1];
+  currentCityDateElement.innerHTML = moment
+    .tz(currentCityTime)
+    .format("MMMM Do YYYY");
+  currentCityTimeElement.innerHTML = moment
+    .tz(currentCityTime)
+    .format("h:mm:ss [<small>] A [</small>]");
 }, 1000);
 
 function updateCity(event) {
+
   let cityTimeZone = event.target.value;
   if (cityTimeZone === "current") {
     cityTimeZone = moment.tz.guess();
